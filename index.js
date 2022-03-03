@@ -10,7 +10,7 @@ inquirer
     },
     {
         type: 'input',
-        message: 'Provide a short description explaining the what, why, and how of your project.',
+        message: 'Provide a short description explaining the what, why, and how of your project:',
         name: 'description',
     },
     {
@@ -27,7 +27,7 @@ inquirer
     },
     {
         type: 'input',
-        message: 'Explain how this application should be used.',
+        message: 'Explain how this application should be used:',
         name: 'usage',
     },
     {
@@ -48,23 +48,28 @@ inquirer
     },
     {
         type: 'input',
-        message: 'Enter your full name.',
+        message: 'Enter your full name:',
         name: 'fullName',
     },
     {
         type: 'input',
-        message: 'Enter your Github username',
+        message: 'Enter your Github username:',
         name: 'github',
     },
     {
         type: 'input',
-        message: 'Enter your email address',
+        message: 'Enter the exact name of your Github repository:',
+        name: 'repoName',
+    },
+    {
+        type: 'input',
+        message: 'Enter your email address:',
         name: 'email',
     }
   ])
   .then((data) => {
     const filename = 'README.md';
-    const {title, description, installation, usage, license, contributing, tests, fullName, github, email} =  data;
+    const {title, description, installation, usage, license, contributing, tests, fullName, github, repoName, email} = data;
 
     let licensePath = ''
     switch (license) {
@@ -79,49 +84,54 @@ inquirer
             break;
     }
 
-    const content = `
-    # ${title}
+    const content = 
+`# ${title}
 
-    ## Description
+## Description
 
-    ${description}
+${description}
 
-    ## Table of Contents
+## Badges
 
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [License](#license)
-    - [Contributing](#contributing)
-    - [Tests](#tests)
-    - [Questions](#questions)
+![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
 
-    ## Installation
+![license](https://img.shields.io/github/license/${github}/${repoName})
 
-    ${installation}
+## Table of Contents
 
-    ## Usage
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
 
-    ${usage}
+## Installation
 
-    ## License
+${installation}
 
-    This project is licensed under the terms of the [${license} license](https://choosealicense.com/licenses/${licensePath}/).
+## Usage
 
-    ## Contributing
+${usage}
 
-    ${contributing}
+## License
 
-    ## Tests
+This project is licensed under the terms of the [${license} license](https://choosealicense.com/licenses/${licensePath}/).
 
-    ${tests}
+## Contributing
 
-    ## Questions
+${contributing}
 
-    This application was created by [${fullName}](https://github.com/${github}). Any questions related to this application can be sent to ${email}
-    `
+## Tests
+
+${tests}
+
+## Questions
+
+This application was created by [${fullName}](https://github.com/${github}). Any questions related to this application can be sent to ${email}`
 
     fs.writeFile(filename, content, (err) =>
         err ? console.log(err) : console.log('Success!')
     );
     });
-    
+
