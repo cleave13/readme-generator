@@ -93,9 +93,7 @@ ${description}
 
 ## Badges
 
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-
-![license](https://img.shields.io/github/license/${github}/${repoName})
+![badmath](https://img.shields.io/github/languages/top/lernantino/badmath) ![license](https://img.shields.io/github/license/${github}/${repoName})
 
 ## Table of Contents
 
